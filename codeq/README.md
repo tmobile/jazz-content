@@ -1,2 +1,2 @@
 # codeq
-Content for code quality 
+Content for Code quality 
