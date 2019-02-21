@@ -7,7 +7,7 @@ USER root
 ARG adminpass
 ENV JENKINS_USER admin
 ENV JENKINS_PASS $adminpass
-ENV JAVA_OPTS -Djenkins.install.runSetupWizard=false
+ENV JAVA_OPTS -Djenkins.install.runSetupWizard=false -Djava.io.tmpdir=/var/tmp
 COPY jenkins/default-user.groovy /usr/share/jenkins/ref/init.groovy.d/
 
 ARG goVersion=1.10.3
@@ -18,7 +18,7 @@ python3-dev python3-pip python3-venv build-essential libssl-dev libffi-dev pytho
 curl https://bootstrap.pypa.io/get-pip.py | python && pip --no-cache-dir install --upgrade awscli &&  apt-get install -y virtualenv && apt-get clean && \
 wget -O /opt/apache-maven-3.5.2-bin.tar.gz https://archive.apache.org/dist/maven/maven-3/3.5.2/binaries/apache-maven-3.5.2-bin.tar.gz && \
 tar xzvf /opt/apache-maven-3.5.2-bin.tar.gz -C  /opt && export PATH=$PATH:/opt/apache-maven-3.5.2/bin >> /etc/profile.d/maven.sh && ln -sf /opt/apache-maven-3.5.2/bin/mvn /usr/bin/mvn && \
-curl -sL https://deb.nodesource.com/setup_8.x | bash && apt-get install -y nodejs && npm install  -global serverless@1.30 @angular/cli@1.7.3 jshint && \
+sed -i '/ftp.fr.debian.org/d' /etc/apt/sources.list && apt-get update && curl -sL https://deb.nodesource.com/setup_8.x | bash && apt-get install -y nodejs && npm install  -global serverless@1.30 @angular/cli@1.7.3 jshint && \
 wget -O /opt/sonar-scanner-cli-3.0.3.778-linux.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-3.0.3.778-linux.zip && \
 unzip /opt/sonar-scanner-cli-3.0.3.778-linux.zip -d /opt && chown -R jenkins:jenkins /opt/sonar-scanner-3.0.3.778-linux && \
 ln -sf /opt/sonar-scanner-3.0.3.778-linux/bin/sonar-scanner /bin/sonar-scanner && mkdir /var/log/depcheck_jazz/ && \
@@ -39,6 +39,7 @@ RUN curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh && 
 ADD jenkins/files/xmls.tar /var/jenkins_home/
 COPY --chown=jenkins:jenkins jenkins/files/encrypt.groovy /var/jenkins_home/
 COPY --chown=jenkins:jenkins jenkins/files/credentials.xml /var/jenkins_home/
+COPY --chown=jenkins:jenkins jenkins/files/nodeMonitors.xml /var/jenkins_home/
 COPY --chown=jenkins:jenkins jenkins/files/config.xml /var/jenkins_home/
 COPY --chown=jenkins:jenkins jenkins/files/scriptApproval.xml /var/jenkins_home/
 
