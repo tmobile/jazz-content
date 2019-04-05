@@ -25,6 +25,7 @@
     <string>method hudson.model.Run getCauses</string>
     <string>method org.jenkinsci.plugins.workflow.support.steps.build.RunWrapper getRawBuild</string>
     <string>staticMethod groovy.json.JsonOutput toJson java.lang.Object</string>
+    <string>staticMethod org.codehaus.groovy.runtime.DefaultGroovyMethods getAt java.util.Collection java.lang.String</string>
   </approvedSignatures>
   <aclApprovedSignatures/>
   <approvedClasspathEntries/>

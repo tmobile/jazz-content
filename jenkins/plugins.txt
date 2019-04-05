@@ -85,3 +85,4 @@ gitlab-plugin:1.5.2
 command-launcher:1.2
 script-security:1.48
 jdk-tool:1.1
+pipeline-utility-steps:2.3.0
