@@ -22,7 +22,7 @@ matrix-project:1.11
 build-timeout:1.18
 credentials:2.1.18
 ssh-credentials:1.14
-workflow-step-api:2.16
+workflow-step-api:2.19
 plain-credentials:1.4
 git-client:2.7.3
 apache-httpcomponents-client-4-api:4.5.5-3.0
@@ -31,7 +31,7 @@ credentials-binding:1.16
 timestamper:1.8.8
 jackson2-api:2.7.3
 scm-api:2.3.0
-workflow-api:2.30
+workflow-api:2.31
 workflow-support:2.21
 github-api:1.92
 durable-task:1.26
