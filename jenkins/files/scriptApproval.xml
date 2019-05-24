@@ -30,6 +30,19 @@
     <string>new java.lang.String java.lang.String</string>
     <string>new java.util.ArrayList java.lang.String</string>
     <string>new java.lang.IllegalStateException java.lang.String</string>
+    <string>method groovy.lang.GroovyObject setProperty java.lang.String java.lang.Object</string>
+    <string>method groovy.lang.GroovyShell evaluate java.lang.String</string>
+    <string>new groovy.lang.GroovyShell groovy.lang.Binding</string>
+    <string>new groovy.lang.Binding</string>
+    <string>staticMethod org.codehaus.groovy.runtime.DefaultGroovyMethods removeAt java.util.List int</string>
+    <string>staticMethod org.codehaus.groovy.runtime.DefaultGroovyMethods and java.lang.Boolean java.lang.Boolean</string>
+    <string>new java.util.ArrayList</string>
+    <string>method groovy.lang.GroovyObject getProperty java.lang.String</string>
+    <string>method groovy.lang.GroovyObject invokeMethod java.lang.String java.lang.Object</string>
+    <string>staticMethod org.codehaus.groovy.runtime.DefaultGroovyMethods println groovy.lang.Closure java.lang.Object</string>
+    <string>staticMethod org.codehaus.groovy.runtime.DefaultGroovyMethods eachDir java.io.File groovy.lang.Closure</string>
+    <string>method java.io.File getName</string>
+    <string>new java.lang.IllegalArgumentException java.lang.String</string>
   </approvedSignatures>
   <aclApprovedSignatures/>
   <approvedClasspathEntries/>
