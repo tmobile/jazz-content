@@ -26,7 +26,7 @@
     <string>method org.jenkinsci.plugins.workflow.support.steps.build.RunWrapper getRawBuild</string>
     <string>staticMethod groovy.json.JsonOutput toJson java.lang.Object</string>
     <string>staticMethod org.codehaus.groovy.runtime.DefaultGroovyMethods getAt java.util.Collection java.lang.String</string>
-    <string>staticMethod org.codehaus.groovy.runtime.DefaultGroovyMethods contains java.lang.Object[]</string>
+    <string>staticMethod org.codehaus.groovy.runtime.DefaultGroovyMethods contains java.lang.Object[] java.lang.Object</string>
     <string>new java.lang.String java.lang.String</string>
     <string>new java.util.ArrayList java.lang.String</string>
     <string>new java.lang.IllegalStateException java.lang.String</string>
