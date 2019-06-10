@@ -43,6 +43,7 @@
     <string>staticMethod org.codehaus.groovy.runtime.DefaultGroovyMethods eachDir java.io.File groovy.lang.Closure</string>
     <string>method java.io.File getName</string>
     <string>new java.lang.IllegalArgumentException java.lang.String</string>
+    <string>staticMethod org.codehaus.groovy.runtime.DefaultGroovyMethods println java.lang.Object java.lang.Object</string>
   </approvedSignatures>
   <aclApprovedSignatures/>
   <approvedClasspathEntries/>
