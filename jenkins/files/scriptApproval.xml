@@ -44,6 +44,7 @@
     <string>method java.io.File getName</string>
     <string>new java.lang.IllegalArgumentException java.lang.String</string>
     <string>staticMethod org.codehaus.groovy.runtime.DefaultGroovyMethods println java.lang.Object java.lang.Object</string>
+    <string>staticMethod org.codehaus.groovy.runtime.DefaultGroovyMethods getAt java.lang.Object java.lang.String</string>
   </approvedSignatures>
   <aclApprovedSignatures/>
   <approvedClasspathEntries/>
