@@ -11,7 +11,9 @@ sed -i "s/^BACKEND=.*.$/BACKEND='Consul'/g" "dist/src/main/docker/parameter" && 
 sed -i "s/CONSUL_RETRY_JOIN=.*.$/CONSUL_RETRY_JOIN='0.0.0.0'/g" "dist/src/main/docker/parameter" && \
 sed -i '29 a admin_password=$1' "dist/src/main/docker/vault.sh" && \
 sed -i '30 a consul_address=$2' "dist/src/main/docker/vault.sh" && \
+sed -i '31 a admin_username=$3' "dist/src/main/docker/vault.sh" && \
 sed -i "s/\$CONSUL_STORAGE_ADDRESS/\$consul_address/g" "dist/src/main/docker/vault.sh" && \
 sed -i "s/password=safeadmin/password=\$admin_password/g" "dist/src/main/docker/vault.sh" && \
-sed -i "s/\.\/vault\.sh*.$/\.\/vault\.sh \$1 \$2/g" "install_tvault.sh" && \
-./build_tvault.sh --build all --package tar && sudo ./install_tvault.sh ${ADMIN_PASS} ${CONSUL_STORAGE_ADDRESS}
+sed -i "s/users\/safeadmin/users\/\$admin_username/g" "dist/src/main/docker/vault.sh" && \
+sed -i "s/\.\/vault\.sh*.$/\.\/vault\.sh \$1 \$2 \$3/g" "install_tvault.sh" && \
+./build_tvault.sh --build all --package tar && sudo ./install_tvault.sh ${ADMIN_PASS} ${CONSUL_STORAGE_ADDRESS} ${ADMIN_USERNAME}
