@@ -15,10 +15,10 @@ ARG goVersion=1.10.3
 RUN echo "deb http://ftp.fr.debian.org/debian testing main" >> /etc/apt/sources.list && apt-get update  && apt-get install -y --no-install-recommends --no-upgrade vim curl \
 sudo libtool autoconf make unzip rsync gcc autogen shtool pkg-config lsb-release python python-dev python-pip python-setuptools groff less libxml-xpath-perl zip python3 \
 python3-dev python3-pip python3-venv build-essential libssl-dev libffi-dev python-virtualenv && ln -sf /usr/bin/python2.7 /usr/bin/python && ln -sf /usr/bin/python3.7 /usr/bin/python3 && \
-curl https://bootstrap.pypa.io/get-pip.py | python && pip --no-cache-dir install --upgrade awscli &&  apt-get install -y virtualenv && apt-get clean && \
+curl https://bootstrap.pypa.io/get-pip.py | python && pip --no-cache-dir install --upgrade awscli --ignore-installed six &&  apt-get install -y virtualenv && apt-get clean && \
 wget -O /opt/apache-maven-3.5.2-bin.tar.gz https://archive.apache.org/dist/maven/maven-3/3.5.2/binaries/apache-maven-3.5.2-bin.tar.gz && \
 tar xzvf /opt/apache-maven-3.5.2-bin.tar.gz -C  /opt && export PATH=$PATH:/opt/apache-maven-3.5.2/bin >> /etc/profile.d/maven.sh && ln -sf /opt/apache-maven-3.5.2/bin/mvn /usr/bin/mvn && \
-sed -i '/ftp.fr.debian.org/d' /etc/apt/sources.list && apt-get update && curl -sL https://deb.nodesource.com/setup_8.x | bash && apt-get install -y nodejs && npm install  -global serverless@1.30 @angular/cli@1.7.3 jshint && \
+sed -i '/ftp.fr.debian.org/d' /etc/apt/sources.list && apt-get update && curl -sL https://deb.nodesource.com/setup_10.x | bash && apt-get install -y nodejs && npm install  -global serverless@1.30 @angular/cli@1.7.3 jshint && \
 wget -O /opt/sonar-scanner-cli-3.0.3.778-linux.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-3.0.3.778-linux.zip && \
 unzip /opt/sonar-scanner-cli-3.0.3.778-linux.zip -d /opt && chown -R jenkins:jenkins /opt/sonar-scanner-3.0.3.778-linux && \
 ln -sf /opt/sonar-scanner-3.0.3.778-linux/bin/sonar-scanner /bin/sonar-scanner && mkdir /var/log/depcheck_jazz/ && \
