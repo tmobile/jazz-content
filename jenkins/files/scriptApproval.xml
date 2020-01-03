@@ -45,6 +45,9 @@
     <string>new java.lang.IllegalArgumentException java.lang.String</string>
     <string>staticMethod org.codehaus.groovy.runtime.DefaultGroovyMethods println java.lang.Object java.lang.Object</string>
     <string>staticMethod org.codehaus.groovy.runtime.DefaultGroovyMethods getAt java.lang.Object java.lang.String</string>
+    <string>field java.lang.Integer value</string>
+    <string>new java.util.LinkedHashMap</string>
+    <string>new java.util.LinkedHashMap java.util.Map</string>
   </approvedSignatures>
   <aclApprovedSignatures/>
   <approvedClasspathEntries/>
