@@ -13,8 +13,8 @@ COPY jenkins/default-user.groovy /usr/share/jenkins/ref/init.groovy.d/
 ARG goVersion=1.10.3
 
 RUN echo "deb http://ftp.fr.debian.org/debian testing main" >> /etc/apt/sources.list && apt-get update  && apt-get install -y --no-install-recommends --no-upgrade vim curl \
-sudo libtool autoconf make unzip rsync gcc autogen shtool pkg-config lsb-release python python-dev python-pip python-setuptools groff less libxml-xpath-perl zip python3 \
-python3-dev python3-pip python3-venv build-essential libssl-dev libffi-dev python-virtualenv && ln -sf /usr/bin/python2.7 /usr/bin/python && ln -sf /usr/bin/python3.7 /usr/bin/python3 && \
+sudo libtool autoconf make unzip rsync gcc autogen shtool pkg-config lsb-release python python-dev python-setuptools groff less libxml-xpath-perl zip python3 \
+python3-dev python3-pip python3-venv build-essential libssl-dev libffi-dev python-virtualenv && ln -sf /usr/bin/python2.7 /usr/bin/python && ln -sf /usr/bin/python3.8 /usr/bin/python3 && \
 curl https://bootstrap.pypa.io/get-pip.py | python && pip --no-cache-dir install --upgrade awscli --ignore-installed six &&  apt-get install -y virtualenv && apt-get clean && \
 wget -O /opt/apache-maven-3.5.2-bin.tar.gz https://archive.apache.org/dist/maven/maven-3/3.5.2/binaries/apache-maven-3.5.2-bin.tar.gz && \
 tar xzvf /opt/apache-maven-3.5.2-bin.tar.gz -C  /opt && export PATH=$PATH:/opt/apache-maven-3.5.2/bin >> /etc/profile.d/maven.sh && ln -sf /opt/apache-maven-3.5.2/bin/mvn /usr/bin/mvn && \
@@ -33,19 +33,26 @@ ENV GOROOT /usr/local/go
 ENV GOBIN  /usr/local/go/bin
 ENV GOPATH /usr/local/go/src
 ENV PATH $GOROOT:$GOBIN:$GOPATH:$PATH
+RUN cd /tmp && \
+    wget http://dl.bintray.com/groovy/maven/apache-groovy-binary-3.0.3.zip && \
+    unzip apache-groovy-binary-3.0.3.zip && \
+    mv groovy-3.0.3 /groovy && \
+    rm apache-groovy-binary-3.0.3.zip
+
+ENV GROOVY_HOME /groovy
+ENV PATH $GROOVY_HOME/bin/:$PATH
 
 COPY jenkins/plugins.txt /usr/share/jenkins/ref/plugins.txt
 RUN curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh && /usr/local/bin/install-plugins.sh < /usr/share/jenkins/ref/plugins.txt
 
 ADD jenkins/files/xmls.tar /var/jenkins_home/
+COPY --chown=jenkins:jenkins jenkins/files/copy_reference_file.log /var/jenkins_home/
 COPY --chown=jenkins:jenkins jenkins/files/encrypt.groovy /var/jenkins_home/
 COPY --chown=jenkins:jenkins jenkins/files/credentials.xml /var/jenkins_home/
 COPY --chown=jenkins:jenkins jenkins/files/nodeMonitors.xml /var/jenkins_home/
 COPY --chown=jenkins:jenkins jenkins/files/config.xml /var/jenkins_home/
 COPY --chown=jenkins:jenkins jenkins/files/scriptApproval.xml /var/jenkins_home/
 
-# Switching back to Jenkins user for safety
-USER jenkins
 
 # Expose the jenkins port
 EXPOSE 8081
