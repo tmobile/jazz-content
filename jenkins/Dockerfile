@@ -1,5 +1,5 @@
 # Base Image and maintainer info
-FROM jenkins/jenkins:2.121.3
+FROM jenkins/jenkins:2.164.1-jdk11
 MAINTAINER JazzOSS Team
 
 # Switching to root to configure the image with system packages
@@ -14,7 +14,7 @@ ARG goVersion=1.10.3
 
 RUN echo "deb http://ftp.fr.debian.org/debian testing main" >> /etc/apt/sources.list && apt-get update  && apt-get install -y -o APT::Immediate-Configure=0 --no-install-recommends --no-upgrade vim curl \
 sudo libtool autoconf make unzip rsync gcc autogen shtool pkg-config lsb-release groff less libxml-xpath-perl zip python3 \
-python3-dev python3-pip python3-venv build-essential libssl-dev libffi-dev openjdk-11-jdk && ln -sf /usr/bin/python3.8 /usr/bin/python3 && \
+python3-dev python3-pip python3-venv build-essential libssl-dev libffi-dev && ln -sf /usr/bin/python3.8 /usr/bin/python3 && \
 curl https://bootstrap.pypa.io/get-pip.py | python && pip --no-cache-dir install --upgrade awscli --ignore-installed six &&  apt-get install -y virtualenv && apt-get clean && \
 wget -O /opt/apache-maven-3.5.2-bin.tar.gz https://archive.apache.org/dist/maven/maven-3/3.5.2/binaries/apache-maven-3.5.2-bin.tar.gz && \
 tar xzvf /opt/apache-maven-3.5.2-bin.tar.gz -C  /opt && export PATH=$PATH:/opt/apache-maven-3.5.2/bin >> /etc/profile.d/maven.sh && ln -sf /opt/apache-maven-3.5.2/bin/mvn /usr/bin/mvn && \
@@ -38,7 +38,7 @@ ENV PATH $GOROOT:$GOBIN:$GOPATH:$JAVA_HOME:$PATH
 
 COPY jenkins/plugins.txt /usr/share/jenkins/ref/plugins.txt
 RUN curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh && /usr/local/bin/install-plugins.sh < /usr/share/jenkins/ref/plugins.txt
-
+# copy files to handle config and scriptApproval etc
 ADD jenkins/files/xmls.tar /var/jenkins_home/
 COPY  jenkins/files/copy_reference_file.log /usr/share/jenkins/ref/copy_reference_file.log
 COPY  jenkins/files/encrypt.groovy /usr/share/jenkins/ref/encrypt.groovy
