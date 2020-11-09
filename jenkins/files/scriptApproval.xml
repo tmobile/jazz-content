@@ -48,6 +48,7 @@
     <string>field java.lang.Integer value</string>
     <string>new java.util.LinkedHashMap</string>
     <string>new java.util.LinkedHashMap java.util.Map</string>
+    <string>staticMethod org.codehaus.groovy.runtime.DefaultGroovyMethods replaceAll java.lang.String java.util.regex.Pattern java.lang.String</string>
   </approvedSignatures>
   <aclApprovedSignatures/>
   <approvedClasspathEntries/>
