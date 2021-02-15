@@ -14,8 +14,8 @@ ARG goVersion=1.10.3
 
 RUN echo "deb http://ftp.fr.debian.org/debian testing main" >> /etc/apt/sources.list && apt-get update  && apt-get install -y -o APT::Immediate-Configure=0 --no-install-recommends --no-upgrade vim curl \
 sudo libtool autoconf make unzip rsync gcc autogen shtool pkg-config lsb-release groff less libxml-xpath-perl zip python3 \
-python3-dev python3-pip python3-venv build-essential libssl-dev libffi-dev && ln -sf /usr/bin/python3.8 /usr/bin/python3 && \
-curl https://bootstrap.pypa.io/get-pip.py | python && pip --no-cache-dir install --upgrade awscli --ignore-installed six &&  apt-get install -y virtualenv && apt-get clean && \
+python3-dev python3-venv build-essential libssl-dev libffi-dev && ln -sf /usr/bin/python3.8 /usr/bin/python3 && \
+curl https://bootstrap.pypa.io/get-pip.py | python3 && pip --no-cache-dir install --upgrade awscli --ignore-installed six &&  apt-get install -y virtualenv && apt-get clean && \
 wget -O /opt/apache-maven-3.5.2-bin.tar.gz https://archive.apache.org/dist/maven/maven-3/3.5.2/binaries/apache-maven-3.5.2-bin.tar.gz && \
 tar xzvf /opt/apache-maven-3.5.2-bin.tar.gz -C  /opt && export PATH=$PATH:/opt/apache-maven-3.5.2/bin >> /etc/profile.d/maven.sh && ln -sf /opt/apache-maven-3.5.2/bin/mvn /usr/bin/mvn && \
 sed -i '/ftp.fr.debian.org/d' /etc/apt/sources.list && apt-get update && curl -sL https://deb.nodesource.com/setup_12.x | bash && apt-get install -y nodejs && npm install  -global serverless@1.79.0 @angular/cli@1.7.3 jshint && \
