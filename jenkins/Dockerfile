@@ -26,6 +26,7 @@ mkdir /var/log/depcheck_jazz/nistfiles && chown -R jenkins:jenkins /var/log/depc
 wget -O /opt/dependency-check-3.2.1-release.zip https://bintray.com/jeremy-long/owasp/download_file?file_path=dependency-check-3.2.1-release.zip && \
 unzip /opt/dependency-check-3.2.1-release.zip -d /opt && chown -R jenkins:jenkins /opt/dependency-check && \
 ln -sf /opt/dependency-check/bin/dependency-check.sh /bin/dependency-check.sh && \
+wget -O /opt/google-chrome-stable_current_amd64.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && apt install -y /opt/google-chrome-stable_current_amd64.deb && \
 wget -O /opt/checkstyle-7.6-all.jar https://github.com/checkstyle/checkstyle/releases/download/checkstyle-7.6.1/checkstyle-7.6.1-all.jar && \
 apt-get autoremove -y &&  rm -rf /var/lib/apt/lists/* && curl -O https://storage.googleapis.com/golang/go${goVersion}.linux-amd64.tar.gz && tar -xvf go${goVersion}.linux-amd64.tar.gz && mv go /usr/local && \
 wget https://aka.ms/downloadazcopy-v10-linux -O /opt/azurecopy.tar.gz && tar xzvf /opt/azurecopy.tar.gz -C  /opt && ln -sf /opt/azcopy_linux_amd64_10.2.1/azcopy /usr/bin/azcopy && curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
